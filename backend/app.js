@@ -14,7 +14,7 @@ config({ path: "./config/config.env" });
 
 app.use(
   cors({
-    origin: 'https://re-collegeplacementmanagementsystem.netlify.app',
+    origin: 'https://completeproject-phi.vercel.app/',
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
