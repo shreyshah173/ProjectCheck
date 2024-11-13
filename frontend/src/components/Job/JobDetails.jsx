@@ -12,7 +12,7 @@ const JobDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://re-college-placement-management-system-4.onrender.com/api/v1/job/${id}`, {
+      .get(`https://projectcheck-6voc.onrender.com/api/v1/job/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
