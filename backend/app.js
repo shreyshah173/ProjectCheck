@@ -14,7 +14,7 @@ config({ path: "./config/config.env" });
 
 app.use(
   cors({
-    origin: 'https://project-check-czqlw3muc-jainshrey1110gmailcoms-projects.vercel.app/', // Use the correct front-end URL here
+    origin: 'https://project-check-czqlw3muc-jainshrey1110gmailcoms-projects.vercel.app', // Use the correct front-end URL here
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true, // Allow credentials to be sent
   })
