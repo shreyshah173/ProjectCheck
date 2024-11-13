@@ -12,7 +12,14 @@ import fileUpload from "express-fileupload";
 const app = express();
 config({ path: "./config/config.env" });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://project-check-zeta.vercel.app', // Use the correct front-end URL here
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true, // Allow credentials to be sent
+  })
+);
+
 
 app.use(cookieParser());
 app.use(express.json());
