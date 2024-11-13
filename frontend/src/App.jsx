@@ -20,7 +20,6 @@ import RecruiterPage from "./components/Pages/RecruiterPage";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -42,7 +41,6 @@ const App = () => {
     fetchUser();
   }, []);
 
-  if (loading) return <div>Loading...</div>; // You can replace this with a loading spinner component
 
   return (
     <>
