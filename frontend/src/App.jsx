@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./App.css";
 import { Context } from "./main";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -20,6 +20,8 @@ import RecruiterPage from "./components/Pages/RecruiterPage";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -33,28 +35,32 @@ const App = () => {
         setIsAuthorized(true);
       } catch (error) {
         setIsAuthorized(false);
+      } finally {
+        setLoading(false);
       }
     };
     fetchUser();
-  }, [isAuthorized]);
+  }, []);
+
+  if (loading) return <div>Loading...</div>; // You can replace this with a loading spinner component
 
   return (
     <>
       <BrowserRouter>
         <Navbar />
         <Routes>
-  <Route path="/login" element={<Login />} />
-  <Route path="/register" element={<Register />} />
-  <Route path="/" element={<Home />} />
-  <Route path="/job/getall" element={<Jobs />} />
-  <Route path="/job/:id" element={<JobDetails />} />
-  <Route path="/application/:id" element={<Application />} />
-  <Route path="/applications/me" element={<MyApplications />} />
-  <Route path="/job/post" element={<PostJob />} />
-  <Route path="/job/me" element={<MyJobs />} />
-  <Route path="*" element={<NotFound />} />
-  <Route path="/recruiter" element={<RecruiterPage />} />
-</Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/job/getall" element={<Jobs />} />
+          <Route path="/job/:id" element={<JobDetails />} />
+          <Route path="/application/:id" element={<Application />} />
+          <Route path="/applications/me" element={<MyApplications />} />
+          <Route path="/job/post" element={<PostJob />} />
+          <Route path="/job/me" element={<MyJobs />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/recruiter" element={<RecruiterPage />} />
+        </Routes>
 
         <Footer />
         <Toaster />

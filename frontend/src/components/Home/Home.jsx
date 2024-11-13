@@ -1,5 +1,4 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../../main";
 import { Navigate } from "react-router-dom";
 import HeroSection from "./HeroSection";
@@ -8,10 +7,16 @@ import PopularCategories from "./PopularCategories";
 import PopularCompanies from "./PopularCompanies";
 
 const Home = () => {
-  const { isAuthorized } = useContext(Context);
-  if (!isAuthorized) {
-    return <Navigate to={"/login"} />;
+  const { isAuthorized, loading } = useContext(Context);
+
+  if (loading) {
+    return <div>Loading...</div>; // Optionally, show a loading spinner here
   }
+
+  if (!isAuthorized) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <>
       <section className="homePage page">
