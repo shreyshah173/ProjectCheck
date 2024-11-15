@@ -18,7 +18,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  const { isAuthorized, setIsAuthorized, user, setUser } = useContext(Context);
+  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
   const navigate = useNavigate(); // useNavigate hook for navigation
 
   const handleRegister = async (e) => {
@@ -34,6 +34,7 @@ const Register = () => {
           withCredentials: true,
         }
       );
+      setUser(data.user);
       toast.success(data.message);
       setName("");
       setEmail("");
@@ -41,7 +42,6 @@ const Register = () => {
       setPhone("");
       setRole("");
       setIsAuthorized(true);
-
       // Navigate based on role
       if (role === "Recruiters") {
         navigate("/recruiter"); // Redirect to RecruiterPage
