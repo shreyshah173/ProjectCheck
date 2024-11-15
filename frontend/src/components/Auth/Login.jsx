@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  const { isAuthorized, setIsAuthorized } = useContext(Context);
+  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,6 +29,7 @@ const Login = () => {
       );
       toast.success(data.message);
       setEmail("");
+      setUser(data.user); // Set the user data after successful login
       setPassword("");
       setRole("");
       setIsAuthorized(true);
