@@ -21,22 +21,21 @@ const Login = () => {
         "https://projectcheck-6voc.onrender.com/api/v1/user/login",
         { email, password, role },
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
       toast.success(data.message);
       setEmail("");
-      setUser(data.user); // Set the user data after successful login
+      setUser(data.user);
       setPassword("");
       setRole("");
       setIsAuthorized(true);
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Login Failed");
     }
   };
+  
 
   if(isAuthorized){
     return <Navigate to={'/'}/>

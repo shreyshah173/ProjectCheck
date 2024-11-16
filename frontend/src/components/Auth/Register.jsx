@@ -28,9 +28,7 @@ const Register = () => {
         "https://projectcheck-6voc.onrender.com/api/v1/user/register",
         { name, phone, email, role, password },
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
@@ -42,16 +40,12 @@ const Register = () => {
       setPhone("");
       setRole("");
       setIsAuthorized(true);
-      // Navigate based on role
-      if (role === "Recruiters") {
-        navigate("/recruiter"); // Redirect to RecruiterPage
-      } else {
-        navigate("/"); // Redirect to home or another page
-      }
+      navigate(role === "Recruiters" ? "/recruiter" : "/");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Registration Failed");
     }
   };
+  
 
   if (isAuthorized) {
     return <Navigate to="/" />;
