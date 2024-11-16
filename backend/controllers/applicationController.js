@@ -5,7 +5,8 @@ import { Job } from "../models/jobSchema.js";
 import cloudinary from "cloudinary";
 
 export const postApplication = catchAsyncErrors(async (req, res, next) => {
-  const { role } = req.user;
+  // const { role } = req.user;
+  const role = "Job Seeker"
   if (role === "Employer") {
     return next(
       new ErrorHandler("Employer not allowed to access this resource.", 400)
